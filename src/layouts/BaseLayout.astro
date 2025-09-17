@@ -1,0 +1,36 @@
+---
+const {
+  title = 'Static SIGAA UFBA',
+  description = 'Terminal interface for SIGAA UFBA academic system',
+  lang = 'pt-BR',
+} = Astro.props as {
+  title?: string
+  description?: string
+  lang?: string
+}
+import '../styles/globals.css'
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1e272e" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Static SIGAA UFBA" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <slot />
+  </body>
+  
+</html>
+
