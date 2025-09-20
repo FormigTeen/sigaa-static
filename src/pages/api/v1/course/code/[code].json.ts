@@ -53,7 +53,7 @@ export const GET: APIRoute = async ({ params }) => {
     )
   }
 
-  const [prerequisites, corequisites, equivalences, section_count] = await Promise.all([
+  const [prerequisites, corequisites, equivalences, sections_count] = await Promise.all([
     convertNestedList(item.prerequisites),
     convertNestedList(item.corequisites),
     convertNestedList(item.equivalences),
@@ -65,7 +65,7 @@ export const GET: APIRoute = async ({ params }) => {
       prerequisites,
       corequisites,
       equivalences,
-      section_count,
+      sections_count,
       list_url: getCoursesUrl(),
       detail_url: getCourseDetailUrl({ id_ref: item.id_ref }),
       sections_url: getCodeCourseSectionsUrl({ code: item.code }),
