@@ -21,7 +21,7 @@ export const GET: APIRoute = async () => {
     const courses = await getCourses()
         .then(
             courses => courses.map(
-                async ({ equivalences, prerequisites, corequisites, ...rest }): SimpleCourse => ({
+                async ({ equivalences, prerequisites, corequisites, ...rest }): Promise<SimpleCourse> => ({
                     ...rest,
                     detail_url: getCourseDetailUrl({ id_ref: rest.id_ref }),
                     code_url: getCodeCourseDetailUrl({ code: rest.code }),
@@ -29,7 +29,7 @@ export const GET: APIRoute = async () => {
                     sections_count: await getSectionCount({ code: rest.code}),
                 })
             )
-        )
+        ).then(coursePromises => Promise.all(coursePromises))
 
 
     return new Response(
