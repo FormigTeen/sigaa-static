@@ -37,7 +37,7 @@ export default function App() {
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Button asChild size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/80 font-mono">
               <a
-                href="https://github.com/your-repo/static-sigaa-ufba"
+                href="https://github.com/FormigTeen/sigaa-cli"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center"
@@ -48,7 +48,7 @@ export default function App() {
             </Button>
             <Button asChild size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/80 font-mono">
               <a
-                href="https://github.com/your-repo/static-sigaa-ufba"
+                href="https://github.com/FormigTeen/sigaa-static"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center"
