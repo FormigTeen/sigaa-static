@@ -2,7 +2,7 @@
 import axios from 'axios'
 import {getSourceUrl} from "../../../../utils/config.ts";
 import {dataSource, dictionaryCourses, type ExtendedCourse, getCourses, getPrograms} from "../../../../utils/data.ts";
-import {addCourseLinks, getCodeCourseDetailUrl, getCoursesUrl, getProgramsUrl} from "../../../../utils/links.ts";
+import {addCourseLinks, getCodeCourseDetailUrl, getCoursesUrl, getProgramsUrl, getCodeCourseSectionsUrl} from "../../../../utils/links.ts";
 import {simplifyCourse} from "../../../../utils/course.ts";
 
 export const prerender = true
@@ -53,6 +53,7 @@ export const GET: APIRoute = async ({ params }) => {
         equivalences,
         list_url: getCoursesUrl(),
         code_url: getCodeCourseDetailUrl({ code: item.code }),
+        sections_url: getCodeCourseSectionsUrl({ code: item.code }),
     }), {
         status: 200,
         headers: jsonHeaders({ cache: true }),

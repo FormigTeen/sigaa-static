@@ -7,7 +7,8 @@ import {
     getCodeCourseDetailUrl,
     getCourseDetailUrl,
     getCoursesUrl,
-    getProgramsUrl
+    getProgramsUrl,
+    getCodeCourseSectionsUrl
 } from '../../../../../utils/links.ts'
 
 export const prerender = true
@@ -64,6 +65,7 @@ export const GET: APIRoute = async ({ params }) => {
     equivalences,
     list_url: getCoursesUrl(),
     detail_url: getCourseDetailUrl({ id_ref: item.id_ref }),
+    sections_url: getCodeCourseSectionsUrl({ code: item.code }),
   }), {
     status: 200,
     headers: jsonHeaders({ cache: true }),
