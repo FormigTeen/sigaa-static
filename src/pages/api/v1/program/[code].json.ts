@@ -4,6 +4,7 @@ import {getSourceUrl} from "../../../../utils/config.ts";
 import {dataSource, getPrograms} from "../../../../utils/data.ts";
 import { getProgramsUrl} from "../../../../utils/links.ts";
 import {addCourseLinks} from "../../../../utils/links.ts";
+ import {getSectionCount} from "../../../../utils/course.ts";
 
 export const prerender = true
 
@@ -33,9 +34,16 @@ export const GET: APIRoute = async ({ params }) => {
         )
     }
 
+    const courses = await Promise.all(
+        item.courses.map(addCourseLinks).map(async aCourse => ({
+            ...aCourse,
+            sections_count: await getSectionCount({ code: aCourse.code }),
+        }))
+    )
+
     return new Response(JSON.stringify({
         ...item,
-        courses: item.courses.map(addCourseLinks),
+        courses,
         list_url: getProgramsUrl()
     }), {
         status: 200,
