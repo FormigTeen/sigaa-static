@@ -9,32 +9,32 @@ type HasCode = {
 }
 
 export const getProgramDetailUrl = (program: HasRef) => [
-    getProjectUrl(), 'api/v1/program', program.id_ref
+    getProjectUrl(), 'api/v1/program', `${program.id_ref}.json`
 ].join('/')
 
 export const getCourseDetailUrl = (program: HasRef) => [
-    getProjectUrl(), 'api/v1/course', program.id_ref
+    getProjectUrl(), 'api/v1/course', `${program.id_ref}.json`
 ].join('/')
 
 export const getCodeCourseDetailUrl = (program: HasCode) => [
-    getProjectUrl(), 'api/v1/course/code', program.code
+    getProjectUrl(), 'api/v1/course/code', `${program.code}.json`
 ].join('/')
 
 export const getCodeCourseSectionsUrl = (program: HasCode) => [
-    getProjectUrl(), 'api/v1/course', program.code, 'sections'
+    getProjectUrl(), 'api/v1/course', program.code, 'sections.json'
 ].join('/')
 
 
 export const getProgramsUrl = () => [
-    getProjectUrl(), 'api/v1/programs'
+    getProjectUrl(), 'api/v1/programs.json'
 ].join('/')
 
 export const getCoursesUrl = () => [
-    getProjectUrl(), 'api/v1/courses'
+    getProjectUrl(), 'api/v1/courses.json'
 ].join('/')
 
 export const getSectionsUrl = () => [
-    getProjectUrl(), 'api/v1/sections'
+    getProjectUrl(), 'api/v1/sections.json'
 ].join('/')
 
 export const addProgramLinks = <T extends HasRef>(item: T) => ({

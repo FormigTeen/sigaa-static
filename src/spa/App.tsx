@@ -16,9 +16,9 @@ export default function App() {
           <h2 className="text-3xl font-bold font-mono text-center mb-6 terminal-prompt">API v1</h2>
           <p className="text-lg text-muted-foreground font-mono mb-8">{"> Acesse os endpoints disponíveis da API v1"}</p>
           <Button asChild size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/80 font-mono">
-            <a href={`${getProjectUrl()}/api/v1`} className="inline-flex items-center">
+            <a href={`${getProjectUrl()}/api/v1/index.json`} className="inline-flex items-center">
               <Terminal className="w-4 h-4 mr-2" />
-              Ir para /api/v1
+              Ir para /api/v1/index.json
             </a>
           </Button>
         </div>

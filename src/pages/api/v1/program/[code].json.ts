@@ -1,4 +1,4 @@
-import type { APIRoute, GetStaticPaths } from 'astro'
+ import type { APIRoute, GetStaticPaths } from 'astro'
 import axios from 'axios'
 import {getSourceUrl} from "../../../../utils/config.ts";
 import {dataSource, getPrograms} from "../../../../utils/data.ts";

@@ -1,4 +1,4 @@
-import type { APIRoute, GetStaticPaths } from 'astro'
+ import type { APIRoute, GetStaticPaths } from 'astro'
 import { dictionaryCourses, type ExtendedSection, getCourses, getSections } from '../../../../../utils/data.ts'
 import { addCourseLinks } from '../../../../../utils/links.ts'
 import { simplifyCourse } from '../../../../../utils/course.ts'
@@ -52,4 +52,3 @@ function jsonHeaders(opts?: { cache?: boolean }) {
   }
   return headers
 }
-
