@@ -35,14 +35,21 @@ jobs:
         with:
           enablement: true
 
-      - name: Detect base path
+      - name: Detect base URL
         shell: bash
         run: |
           REPO="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
           if [[ "$REPO" == *.github.io ]]; then
+            # User/Org pages: REPO is already like <owner>.github.io
+            echo "BASE_URL=https://${REPO}" >> $GITHUB_ENV
             echo "BASE_PATH=/" >> $GITHUB_ENV
+            echo "PUBLIC_BASE_URL=https://${REPO}" >> $GITHUB_ENV
           else
-            echo "BASE_PATH=/$REPO/" >> $GITHUB_ENV
+            # Project pages under <owner>.github.io/<repo>
+            echo "BASE_URL=https://${OWNER}.github.io/${REPO}" >> $GITHUB_ENV
+            echo "BASE_PATH=/${REPO}/" >> $GITHUB_ENV
+            echo "PUBLIC_BASE_URL=https://${OWNER}.github.io/${REPO}" >> $GITHUB_ENV
           fi
 
       - name: Install dependencies
