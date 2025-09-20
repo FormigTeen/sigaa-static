@@ -27,4 +27,3 @@ function jsonHeaders(opts?: { cache?: boolean }) {
   }
   return headers
 }
-
