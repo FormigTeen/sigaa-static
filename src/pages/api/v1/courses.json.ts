@@ -14,18 +14,19 @@ type SimpleCourse = Omit<ExtendedCourse, "equivalences" | "corequisites" | "prer
     detail_url: string
     code_url: string
     sections_url: string
+    sections_count: number
 }
 
 export const GET: APIRoute = async () => {
     const courses = await getCourses()
         .then(
             courses => courses.map(
-                ({ equivalences, prerequisites, corequisites, ...rest }): SimpleCourse => ({
+                async ({ equivalences, prerequisites, corequisites, ...rest }): SimpleCourse => ({
                     ...rest,
                     detail_url: getCourseDetailUrl({ id_ref: rest.id_ref }),
                     code_url: getCodeCourseDetailUrl({ code: rest.code }),
                     sections_url: getCodeCourseSectionsUrl({ code: rest.code }),
-                    sections_count: getSectionCount({ code: rest.code}),
+                    sections_count: await getSectionCount({ code: rest.code}),
                 })
             )
         )
