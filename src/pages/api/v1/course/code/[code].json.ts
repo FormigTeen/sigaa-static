@@ -10,6 +10,7 @@ import {
     getProgramsUrl,
     getCodeCourseSectionsUrl
 } from '../../../../../utils/links.ts'
+ import {getSectionCount} from "../../../../../utils/course.ts";
 
 export const prerender = true
 
@@ -52,20 +53,22 @@ export const GET: APIRoute = async ({ params }) => {
     )
   }
 
-  const [prerequisites, corequisites, equivalences] = await Promise.all([
+  const [prerequisites, corequisites, equivalences, section_count] = await Promise.all([
     convertNestedList(item.prerequisites),
     convertNestedList(item.corequisites),
     convertNestedList(item.equivalences),
+      getSectionCount({ code: item.code })
   ])
 
   return new Response(JSON.stringify({
-    ...item,
-    prerequisites,
-    corequisites,
-    equivalences,
-    list_url: getCoursesUrl(),
-    detail_url: getCourseDetailUrl({ id_ref: item.id_ref }),
-    sections_url: getCodeCourseSectionsUrl({ code: item.code }),
+      ...item,
+      prerequisites,
+      corequisites,
+      equivalences,
+      section_count,
+      list_url: getCoursesUrl(),
+      detail_url: getCourseDetailUrl({ id_ref: item.id_ref }),
+      sections_url: getCodeCourseSectionsUrl({ code: item.code }),
   }), {
     status: 200,
     headers: jsonHeaders({ cache: true }),

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { getProjectUrl, getSourceUrl} from "../../../utils/config.ts";
 import {dataSource, type ExtendedCourse, getCourses} from "../../../utils/data.ts";
 import {getCodeCourseDetailUrl, getCourseDetailUrl, getCodeCourseSectionsUrl} from "../../../utils/links.ts";
+ import {getSectionCount} from "../../../utils/course.ts";
 
 export const prerender = true
 
@@ -23,7 +24,8 @@ export const GET: APIRoute = async () => {
                     ...rest,
                     detail_url: getCourseDetailUrl({ id_ref: rest.id_ref }),
                     code_url: getCodeCourseDetailUrl({ code: rest.code }),
-                    sections_url: getCodeCourseSectionsUrl({ code: rest.code })
+                    sections_url: getCodeCourseSectionsUrl({ code: rest.code }),
+                    sections_count: getSectionCount({ code: rest.code}),
                 })
             )
         )
