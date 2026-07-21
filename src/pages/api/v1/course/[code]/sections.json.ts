@@ -24,11 +24,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     .then(entries => Object.fromEntries(entries))
     .then(obj => Object.keys(obj))
 
-  return codes.map((code) => ({ params: { code } }))
+  return codes.map((code) => ({ params: { code: encodeURIComponent(code) } }))
 }
 
 export const GET: APIRoute = async ({ params }) => {
-  const code = String(params?.code ?? '')
+  const code = decodeURIComponent(String(params?.code ?? ''))
 
   const sections = await getSections()
   const filtered = sections.filter(aSection => aSection.course.code === code)

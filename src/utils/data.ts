@@ -40,6 +40,4 @@ export const getSections = () => dataSource.then(aResponse => Object.values(aRes
         courses.map(aCourse => [aCourse.code, aCourse])
     )
 }
-console.log(await getDictionaryCourses())
-
 export const dictionaryCourses = getDictionaryCourses()

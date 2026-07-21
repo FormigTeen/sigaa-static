@@ -17,11 +17,11 @@ export const getCourseDetailUrl = (program: HasRef) => [
 ].join('/')
 
 export const getCodeCourseDetailUrl = (program: HasCode) => [
-    getProjectUrl(), 'api/v1/course/code', `${program.code}.json`
+    getProjectUrl(), 'api/v1/course/code', `${encodeURIComponent(program.code)}.json`
 ].join('/')
 
 export const getCodeCourseSectionsUrl = (program: HasCode) => [
-    getProjectUrl(), 'api/v1/course', program.code, 'sections.json'
+    getProjectUrl(), 'api/v1/course', encodeURIComponent(program.code), 'sections.json'
 ].join('/')
 
 

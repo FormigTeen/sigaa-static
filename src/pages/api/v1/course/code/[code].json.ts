@@ -22,7 +22,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     .then(entries => Object.fromEntries(entries))
     .then(obj => Object.keys(obj))
 
-  return codes.map((code) => ({ params: { code } }))
+  return codes.map((code) => ({ params: { code: encodeURIComponent(code) } }))
 }
 
 const simplifyCourse = (course: ExtendedCourse) => ({
@@ -40,7 +40,7 @@ const convertList = (codes: string[]) => Promise.all(codes.map(convertCode))
 const convertNestedList = (codes: string[][]) => Promise.all(codes.map(convertList))
 
 export const GET: APIRoute = async ({ params }) => {
-  const code = String(params?.code ?? '')
+  const code = decodeURIComponent(String(params?.code ?? ''))
 
   const item = await getCourses().then(
     courses => courses.find(course => course.code === code),
